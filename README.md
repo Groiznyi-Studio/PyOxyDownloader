@@ -17,8 +17,12 @@ PyOxyDownloader - Script for fast and safe download of files from the oxy cloud 
 
 # Multi downloads mode
 1)In the field enter urls to the file with oxy cloud and press enter
+
 2)Warning1: The files will be saved in the current script folder
+
 3)Warning2: The main thing is to put ":" after each url and at the end of the line too!!!
+
 4)Example: url oxy.cloud: https://oxy.cloud/d/SKqc:https://oxy.cloud/d/Gbo: and press enter
+
 5)Ready!!!
 
