@@ -12,7 +12,7 @@ Classes:
       5)WriteFile(Path, NameFile) - Path: type(str) endline '\', NameFile: type(str) - saves the file that was received by the link,
       throws a CoreException when an error occurs
       
-      6)GetNextUrl(Step) - Step: type(int), if Step == 1 - get the second download link(Oxy Cloud only (Parser for Oxy Cloud)) and save in __Params["SecondUrl"],
-      if Step == 2 - get the final download link(Oxy Cloud only (Parser for Oxy Cloud)) and save in __Params["FinalUrl"],
+      6)GetNextUrl(Step) - Step: type(int), if Step == 1 - get the second download link(Oxy Cloud only (Parser for Oxy Cloud)) and saved in __Params["SecondUrl"],
+      if Step == 2 - get the final download link(Oxy Cloud only (Parser for Oxy Cloud)) and saved in __Params["FinalUrl"],
       throws a CoreException when an error occurs
       
