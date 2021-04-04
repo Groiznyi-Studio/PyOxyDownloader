@@ -3,6 +3,7 @@ PyOxyDownloader - Script for fast and safe download of files from the oxy cloud 
 
 # Demands
 1)Python 3.3+
+
 2)Windows Vista - 10
 
 # How to use
