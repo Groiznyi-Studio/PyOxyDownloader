@@ -20,4 +20,4 @@ PyOxyDownloader - Script for fast and safe download of files from the oxy cloud 
 
 2)Use functions in module
 
-3)Read the documentation(located in the Api/Doc.md)
+3)Read the documentation(located in the Api/Doc.txt)
