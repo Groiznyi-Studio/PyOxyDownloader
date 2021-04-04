@@ -8,7 +8,7 @@ import os.path as osp #os.path -> osp
 class Core():
     __Params = {
         "ActiveDirectory" : sys.argv[0][0:len(sys.argv[0]) - len(osp.basename(sys.argv[0])) - 1],
-        "HtmlCodePage" : "",
+        "HtmlCodePage" : None,
         "MainUrl" : "",
         "SecondUrl" : "",
         "FinalUrl" : "",
@@ -22,13 +22,20 @@ class Core():
 
     def GetHtmlCodePage(Url, Content = False):
         if Content == False:
-            HtmlCodePage = requests.get(Url)
-            Core.__Params["HtmlCodePage"] = HtmlCodePage.text
+            try:
+                HtmlCodePage = requests.get(Url)
+                Core.__Params["HtmlCodePage"] = HtmlCodePage.text
+                return 1
+            except:
+                raise Core.CoreException("GetHtmlCodePage return error!!!")
             
         elif Content:
-            HtmlCodePage = requests.get(Url)
-            Core.__Params["HtmlCodePage"] = HtmlCodePage.content
-
+            try:
+                HtmlCodePage = requests.get(Url)
+                Core.__Params["HtmlCodePage"] = HtmlCodePage.content
+                return 1
+            except:
+                raise Core.CoreException("GetHtmlCodePage return error!!!")
         else:
             return 0
 
@@ -37,15 +44,17 @@ class Core():
         if Param in Core.__Params:
             return Core.__Params[Param]
         else:
-            return 0
+            raise Core.CoreException("ClearParam \""+Param+"\" not defined!!!")
 
+            
     def ClearParam(Param):
         if Param in Core.__Params:
             Core.__Params[Param] = None
             return 1
         else:
-            return 0
+            raise Core.CoreException("ClearParam \""+Param+"\" not defined!!!")
 
+            
     def GetNextUrl(Data, Step):
         if Step == 1:
             for Line in Data:
@@ -88,20 +97,31 @@ class Core():
             
     def WriteHtmlCodePage(NameFile, Content = False):
         if Content == False:
-            File = open(Core.__Params["ActiveDirectory"]+"/"+NameFile, "w")
-            File.write(Core.__Params["HtmlCodePage"])
-            File.close()
+            try:
+                File = open(Core.__Params["ActiveDirectory"]+"/"+NameFile, "w")
+                File.write(Core.__Params["HtmlCodePage"])
+                File.close()
+                return 1
+            except:
+                raise Core.CoreException("WriteHtmlCodePage return error!!!")
         elif Content:
-            File = open(Core.__Params["ActiveDirectory"]+"/"+NameFile, "wb")
-            File.write(Core.__Params["HtmlCodePage"])
-            File.close()
+            try:
+                File = open(Core.__Params["ActiveDirectory"]+"/"+NameFile, "wb")
+                File.write(Core.__Params["HtmlCodePage"])
+                File.close()
+                return 1
+            except:
+                raise Core.CoreException("WriteHtmlCodePage return error!!!")
 
 
     def ReadHtmlCodePage(NameFile):
-        File = open(Core.__Params["ActiveDirectory"]+"/"+NameFile)
-        Data = File.readlines()
-        File.close()
-        return Data
+        try:
+            File = open(Core.__Params["ActiveDirectory"]+"/"+NameFile)
+            Data = File.readlines()
+            File.close()
+            return Data
+        except:
+            raise Core.CoreException("ReadHtmlCodePage return error!!!")
 
 
     def DeleteFile(NameFile):
@@ -110,34 +130,37 @@ class Core():
             return 1
         except:
             return 0
+    
+    
+    class CoreException(Exception):
+        pass
 
-
+        
 #------------------------------------------USE CORE AND DOWNLOAD FILE--------------------------------------
 if __name__ == '__main__':
-    Core.GetMainUrl()
-    Core.GetHtmlCodePage(Core.GetParam("MainUrl"))
-    Core.WriteHtmlCodePage("HtmlCodePage1")
-    Core.GetNextUrl(Core.ReadHtmlCodePage("HtmlCodePage1"), 1)
-    Core.ClearParam("HtmlCodePage")
-    Core.DeleteFile("HtmlCodePage1")
+    try:
+        Core.GetMainUrl()
+        Core.GetHtmlCodePage(Core.GetParam("MainUrl"))
+        Core.WriteHtmlCodePage("HtmlCodePage1")
+        Core.ReadHtmlCodePage("HtmlCodePage1")
+        Core.GetNextUrl(Core.ReadHtmlCodePage("HtmlCodePage1"), 1)
+        Core.ClearParam("HtmlCodePage")
+        Core.DeleteFile("HtmlCodePage1")
 
-    Core.GetHtmlCodePage(Core.GetParam("SecondUrl"))
-    Core.WriteHtmlCodePage("HtmlCodePage2")
-    Core.GetNextUrl(Core.ReadHtmlCodePage("HtmlCodePage2"), 2)
-    Core.GetNameFile(Core.ReadHtmlCodePage("HtmlCodePage2"))
-    Core.ClearParam("HtmlCodePage")
-    Core.DeleteFile("HtmlCodePage2")
+        Core.GetHtmlCodePage(Core.GetParam("SecondUrl"))
+        Core.WriteHtmlCodePage("HtmlCodePage2")
+        Core.GetNextUrl(Core.ReadHtmlCodePage("HtmlCodePage2"), 2)
+        Core.GetNameFile(Core.ReadHtmlCodePage("HtmlCodePage2"))
+        Core.ClearParam("HtmlCodePage")
+        Core.DeleteFile("HtmlCodePage2")
 
-    Core.GetHtmlCodePage(Core.GetParam("FinalUrl"), True)
-    Core.WriteHtmlCodePage(Core.GetParam("NameFile"), True)
+        Core.GetHtmlCodePage(Core.GetParam("FinalUrl"), True)
+        Core.WriteHtmlCodePage(Core.GetParam("NameFile"), True)
+    except:
+        input("Press Emter...")
+        sys.exit()
+        
     input("Finish!!! Press Enter...")
 #------------------------------------------------IMPORT CORE-----------------------------------------------
 else:
     pass
-
-
-
- 
-
-
-
