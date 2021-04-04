@@ -1,1 +1,7 @@
-  פûגפûג
+Classes:
+1)Core - The api itself
+    Functions:
+      1)GetMainUrl() - Get Url(Using input())\n
+      2)GetParam(Param) - Param: type(str) - return data from all parameters(Core.__Params)\n
+      3)
+
