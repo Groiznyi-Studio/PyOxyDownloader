@@ -157,6 +157,7 @@ if __name__ == '__main__':
         Core.GetHtmlCodePage(Core.GetParam("FinalUrl"), True)
         Core.WriteHtmlCodePage(Core.GetParam("NameFile"), True)
     except:
+        print("CoreError!!!")
         input("Press Emter...")
         sys.exit()
         
