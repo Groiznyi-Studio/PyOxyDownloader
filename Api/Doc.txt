@@ -1,7 +1,8 @@
 Classes:
 1)Core - The api itself
     Functions:
-      1)GetMainUrl() - Get Url(Using input())\n
-      2)GetParam(Param) - Param: type(str) - return data from all parameters(Core.__Params)\n
-      3)
-
+      1)GetMainUrl() - Get Url(Using input())
+      2)GetParam(Param) - Param: type(str) - return data from all parameters(Core.__Params)
+      3)ClearParam(Param) - Param: type(str) - clears the specified parameter from(Core.__Params)
+      4)GetHtmlCodePage(Url, Content = False) - Url: type(str), Content: type(bool) - downloads the page code and stores it in __Params["HtmlCodePage"],
+      if Content == True then save the file to __Params["HtmlCodePage"]
