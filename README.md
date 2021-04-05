@@ -24,7 +24,7 @@ PyOxyDownloader - Script for fast and safe download of files from the oxy cloud 
 
 3)The loading status will be displayed in the corner of the application window(Title 'OxyDownloader - Finish' - means download completed)
 
-4)Warning: 
+4)Warning: it is possible to write a file to a flash drive
 
 # How to use(Api)
 1)Import PyOxyDowloader(Api)
