@@ -18,7 +18,7 @@ PyOxyDownloader - Script for fast and safe download of files from the oxy cloud 
 4)Ready!!!
 
 # How to use(Desktop App)
-1)Run .exe and select the path where to save the file(Button 'Select')
+1)Run .exe(Desktop App/Release) and select the path where to save the file(Button 'Select')
 
 2)Enter the link oxy.cloud in the Url Oxy.Cloud field and click the button 'Download'
 
